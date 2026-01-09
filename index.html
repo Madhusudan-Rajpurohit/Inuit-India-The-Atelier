@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inuit India - Hand-lasted luxury footwear and artisan craftsmanship.">
+    <title>Inuit India | The Atelier</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-logo"><span>INUIT</span></div>
+        <div class="nav-links">
+            <a href="collections.html">COLLECTIONS</a>
+            <a href="#about">OUR CRAFT</a>
+            <a href="#">STORES</a>
+        </div>
+        <div class="nav-account">
+            <a href="signin.html">
+            <button id="signInBtn">SIGN IN</button>
+            </a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <span class="pre-title">ESTABLISHED IN BHARAT</span>
+        <h1 class="hero-title">The Soul of <br><span class="italic">Indian Craft</span></h1>
+        <p class="hero-subtitle">Hand-lasted luxury for the modern Maharaja. Each pair is a masterpiece of patience.</p>
+        <div class="hero-buttons">
+            <button class="cta-outline-white" id="exploreBtn">EXPLORE ATELIER</button>
+            <button class="cta-outline-white" id="storyBtn">OUR STORY</button>
+        </div>
+    </header>
+
+    <section id="about" class="details-section">
+        <div class="details-content">
+            <h2 class="section-heading">Heritage in Every Stitch</h2>
+            <p>At Inuit, we believe luxury is a slow process. Every pair of our footwear undergoes over 200 manual steps, from hand-clicking the leather to the final mirror-shine finish. Our artisans in the heart of India preserve centuries-old techniques to ensure your comfort is as lasting as our style.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>200+</h3>
+                    <p>Manual Steps</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Full-Grain Leather</p>
+                </div>
+                <div class="stat-item">
+                    <h3>60+</h3>
+                    <p>Hours per Pair</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="chat-widget-container">
+        <div class="chat-panel hidden" id="chatPanel">
+            <div class="chat-header">
+                <div class="concierge-profile">
+                    <div class="avatar-box">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Arjun Kapoor">
+                        <span class="online-status"></span>
+                    </div>
+                    <div class="concierge-info">
+                        <span class="label">ATELIER HOST</span>
+                        <span class="name">Arjun Kapoor</span>
+                    </div>
+                </div>
+                <div class="header-actions" style="display: flex; align-items: center; gap: 15px;">
+                    <button id="refreshChatBtn" class="header-icon-btn" aria-label="Refresh chat">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    </button>
+                </div>
+                <button class="close-chat" id="closeChatBtn" aria-label="Close chat">&times;</button>
+            </div>
+            
+            <div class="messages-area" id="chatWindow">
+                <div class="bot-msg msg">Namaste! How can I assist you with our collection today?</div>
+            </div>
+            <div class="actions-area" id="buttonArea"></div>
+            
+            <div class="input-section">
+                <form id="chatForm" class="pill-input">
+                    <input type="text" id="userInput" placeholder="Ask about sizing..." autocomplete="off">
+                    <button type="submit" id="sendBtn" aria-label="Send message">&rarr;</button>
+                </form>
+            </div>
+        </div>
+
+        <button class="chat-toggle-btn" id="chatToggleBtn">
+            <div class="btn-content">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <span class="btn-text">Chat with us</span>
+            </div>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const chatPanel = document.getElementById('chatPanel');
+    const chatToggleBtn = document.getElementById('chatToggleBtn');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const chatForm = document.getElementById('chatForm');
+
+    // Toggle Chat Panel
+    const toggleChat = () => chatPanel.classList.toggle('hidden');
+    chatToggleBtn.addEventListener('click', toggleChat);
+    closeChatBtn.addEventListener('click', toggleChat);
+
+    // Handle Chat Send - CONNECTED TO SCRIPT.JS
+    chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // This calls the function defined in your script.js
+        handleSend(); 
+    });
+
+    // Navigation and Scroll buttons
+    document.getElementById('signInBtn').onclick = () => window.location.href = 'signin.html';
+    document.getElementById('exploreBtn').onclick = () => window.location.href = 'collections.html';
+    document.getElementById('storyBtn').onclick = () => {
+        document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+    };
+});
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

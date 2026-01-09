@@ -1,0 +1,662 @@
+:root {
+    --bg: #FFFFFF;
+    --sidebar: #F9F9F9;
+    --accent: #1A1A1A;
+    --text-main: #222222;
+    --text-muted: #888888;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text-main); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Navigation */
+.top-nav { height: 70px; border-bottom: 1px solid #EEE; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; flex-shrink: 0; }
+.nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 3px; font-size: 22px; }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+.nav-account button { background: black; color: white; border: none; padding: 8px 20px; font-size: 10px; cursor: pointer; }
+
+/* Main Split Layout */
+.main-container { flex: 1; display: flex; overflow: hidden; }
+
+/* Brand Panel (Left) */
+.brand-panel { width: 40%; background: var(--sidebar); padding: 60px; border-right: 1px solid #EEE; display: flex; flex-direction: column; justify-content: center; }
+.image-wrapper { position: relative; width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.image-wrapper img { width: 100%; display: block; }
+.play-badge { position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.7); color: white; font-size: 10px; padding: 5px 12px; border-radius: 20px; }
+.brand-title { font-family: 'Playfair Display', serif; font-size: 48px; line-height: 1.1; margin-bottom: 15px; }
+.brand-subtitle { color: var(--text-muted); font-style: italic; font-size: 18px; }
+
+/* Chat Panel (Right) */
+.chat-panel { width: 60%; display: flex; flex-direction: column; background: white; }
+.chat-header { padding: 10px 20px; border-bottom: 1px solid #F5F5F5; }
+.concierge-profile { display: flex; align-items: center; gap: 15px; }
+.avatar-box { position: relative; width: 45px; height: 45px; }
+.avatar-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.online-dot { position: absolute; bottom: 2px; right: 2px; width: 10px; height: 10px; background: #27AE60; border: 2px solid white; border-radius: 50%; }
+.label { display: block; font-size: 9px; color: var(--text-muted); font-weight: 700; letter-spacing: 1px; }
+.name { font-weight: 700; font-size: 15px; }
+
+.messages-area { flex: 1; overflow-y: auto; padding: 20px 40px; display: flex; flex-direction: column; gap: 20px; }
+.date-divider { text-align: center; font-size: 11px; color: #CCC; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Bubbles */
+.msg { max-width: 80%; padding: 15px 20px; border-radius: 15px; font-size: 15px; line-height: 1.5; position: relative; }
+.bot-msg { background: #F2F2F2; align-self: flex-start; border-bottom-left-radius: 2px; }
+.user-msg { background: var(--accent); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+/* Buttons */
+.actions-area { padding: 10px 40px; display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-choice { background: white; border: 1px solid #DDD; padding: 8px 18px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: 0.2s; }
+.btn-choice:hover { border-color: black; background: #F9F9F9; }
+
+/* Input */
+.input-section { padding: 20px 40px 40px; }
+.pill-input { background: #F5F5F5; border-radius: 30px; display: flex; padding: 5px 5px 5px 20px; align-items: center; }
+.pill-input input { flex: 1; border: none; background: transparent; outline: none; font-size: 14px; height: 40px; }
+#sendBtn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+/* Video Cards */
+.v-card { min-width: 200px; margin-top: 10px; border: 1px solid #EEE; padding: 8px; border-radius: 8px; background: white; }
+.v-card iframe { width: 100%; height: 110px; border-radius: 4px; border: none; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .brand-panel { display: none; }
+    .chat-panel { width: 100%; }
+    .nav-links { display: none; }
+}
+
+/* Full Page Layout Adjustments */
+body { overflow-y: auto; height: auto; } /* Allow scrolling for home page details */
+
+/* Hero Section */
+.hero-section {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('mainphoto.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-title { font-family: 'Playfair Display', serif; font-size: 72px; line-height: 1; }
+.italic { font-style: italic; font-weight: 400; }
+.cta-gold { 
+    background: transparent; border: 1px solid white; color: white; 
+    padding: 15px 40px; margin-top: 30px; cursor: pointer; letter-spacing: 2px;
+    transition: 0.3s;
+}
+.cta-gold:hover { background: white; color: black; }
+
+/* Company Details */
+.details-section { padding: 100px 10%; text-align: center; background: #FFF; }
+.section-heading { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 20px; }
+.details-content p { max-width: 800px; margin: 0 auto 50px; line-height: 1.8; color: #555; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #EEE; padding-top: 50px; }
+.stat-item h3 { font-size: 32px; font-weight: 300; }
+.stat-item p { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
+
+/* Floating Chat Widget */
+#chat-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
+
+.chat-panel { 
+    position: absolute; bottom: 90px; right: 0; width: 400px; height: 550px;
+    background: white; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    display: flex; flex-direction: column; overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.chat-panel.hidden { display: none; transform: translateY(20px); opacity: 0; }
+.close-chat { background: none; border: none; font-size: 24px; cursor: pointer; color: #888; }
+
+/* Luxury Thin-Line Table Styling */
+.size-table {
+    width: 100%;
+    border-collapse: collapse; /* Essential for thin lines */
+    margin-top: 15px;
+    background: white;
+}
+
+.size-table th, .size-table td {
+    border: 1px solid #E0E0E0; /* This creates the thin grey line */
+    padding: 10px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.size-table th {
+    background-color: #F9F9F9;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between; /* This pushes Arjun to left and Icon to right */
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.refresh-action {
+    cursor: pointer;
+    color: #888;
+    transition: transform 0.3s ease, color 0.2s;
+}
+
+.refresh-action:hover {
+    color: #000;
+    transform: rotate(180deg);
+}
+
+#mainImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* This keeps it centered but shifts it 20 pixels UP */
+    transform: translateY(-50px); 
+}
+
+/* COLLECTION PAGE */
+/* Collection Page Specifics */
+.collections-page {
+    padding: 60px 5%;
+    background: #FFFFFF;
+    overflow-y: auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* Grid Logic */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Product Card Styling */
+.product-card {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.product-image-box {
+    width: 100%;
+    height: 450px;
+    background: #F9F9F9;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.product-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.product-card:hover .product-image-box img {
+    transform: scale(1.05);
+}
+
+/* Best Seller Mark */
+.tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 5px 12px;
+    letter-spacing: 1px;
+}
+
+.best-seller {
+    background: #1A1A1A;
+    color: white;
+}
+
+/* Text Info Styling */
+.product-info .category {
+    font-size: 10px;
+    color: #888;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.product-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin: 10px 0;
+    color: #1A1A1A;
+}
+
+.product-info .price {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Mobile Fix */
+@media (max-width: 600px) {
+    .product-image-box { height: 350px; }
+    .product-grid { grid-template-columns: 1fr; }
+}
+
+/* Hero Image Space Logic */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+    background: #fdfdfd;
+}
+
+.hero-image-container {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-main-img {
+    width: 90%;
+    max-height: 80%;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+}
+
+.hero-text-overlay {
+    flex: 1;
+    padding-left: 50px;
+}
+
+/* Floating Chatbot Button */
+/* KEEP AND ENSURE THESE PROPERTIES ARE SET */
+.chat-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1A1A1A; 
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px; /* This creates the pill shape */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-text {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    white-space: nowrap; /* Keeps "Chat with us" on one line */
+}
+
+/* Chat Panel Positioning */
+.chat-panel {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 500px;
+    height: 700px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.chat-panel.hidden {
+    display: none;
+}
+
+/* New Header Icon Styling */
+.header-icon-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.6s ease, color 0.2s;
+}
+
+.header-icon-btn:hover {
+    color: #000;
+    transform: rotate(90deg);
+}
+
+/* --- HOME PAGE SPECIFIC STYLES (Professional Overhaul) --- */
+
+/* --- UPDATED LUXURY HERO SECTION --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 92vh; /* Adjusted for nav height */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('hero image.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.pre-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 35px;
+    opacity: 0.9;
+}
+
+.cta-outline-white {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 15px 45px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cta-outline-white:hover {
+    background: white;
+    color: black;
+}
+
+/* --- UPDATED FLOATING CHAT BUTTON --- */
+/* --- CLEANED & FINAL CHAT STYLES --- */
+
+/* 1. The Main Container */
+#chat-widget-container { 
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    z-index: 2000; 
+}
+
+/* 2. Fixed Pill-Shaped Toggle Button */
+.chat-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1A1A1A; 
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px; /* Essential for Pill Shape */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    width: auto;  /* Ensures it's not a fixed circle */
+    height: auto;
+}
+
+.chat-toggle-btn:hover { transform: translateY(-3px); }
+
+/* 3. The Larger Chat Panel */
+.chat-panel { 
+    position: absolute; 
+    bottom: 80px; 
+    right: 0; 
+    width: 500px;  /* Increased width */
+    height: 550px; /* Increased height */
+    background: white; 
+    border-radius: 20px; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.chat-panel.hidden { 
+    display: none; 
+    transform: translateY(20px); 
+    opacity: 0; 
+}
+
+/* 4. Header with Refresh Icon */
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-icon-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.header-icon-btn:hover { color: #000; }
+
+/* SIGN IN CSS */
+/* Specific Styles for Sign-In Page */
+        .auth-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            opacity: 0; /* For entry animation */
+            transform: translateY(10px);
+            transition: all 0.8s ease-out;
+        }
+
+        .auth-container.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .auth-visual {
+            flex: 1;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('Heritage Hand-Patina Brogue.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 60px;
+            color: white;
+        }
+
+        .auth-form-section {
+            width: 450px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 60px;
+            position: relative;
+        }
+
+        .auth-header { margin-bottom: 40px; }
+        .auth-header h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 10px; }
+        .auth-header p { color: var(--text-muted); font-size: 14px; }
+
+        .input-group { margin-bottom: 25px; position: relative; }
+        .input-group label { 
+            display: block; 
+            font-size: 10px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 8px; 
+            color: var(--text-muted);
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            border-bottom: 1px solid #EEE;
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus { border-color: var(--accent); }
+
+        .form-actions {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-primary:hover { opacity: 0.9; }
+
+        .back-home {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 11px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .auth-visual { display: none; }
+            .auth-form-section { width: 100%; padding: 40px; }
+        }
+
+.nav-account button { 
+    background: black; 
+    color: white; 
+    border: none; 
+    padding: 10px 25px; /* Slightly more padding for rounded looks */
+    font-size: 10px; 
+    cursor: pointer;
+    
+    /* ADD THIS LINE */
+    border-radius: 50px; /* High value ensures a pill shape */
+    
+    letter-spacing: 1px;
+    font-weight: 700;
+    transition: background 0.3s ease;
+}
+
+.nav-account button:hover {
+    background: #333; /* Subtle hover effect */
+}
+
+.btn-choice:hover {
+    border-color: #1A1A1A;
+    background: #1A1A1A;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Video Buttons Icon Design CSS */
+.vid-btn {
+    flex: 1;
+    background: transparent;
+    color: #1A1A1A;
+    border: 1px solid #1A1A1A;
+    padding: 8px 12px;
+    border-radius: 50px; /* High value for round pill shape */
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.vid-btn:hover {
+    background: #1A1A1A;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.vid-btn:active {
+    transform: translateY(0);
+}
+
+/* Container for buttons to add spacing */
+.video-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 0 5px;
+}
